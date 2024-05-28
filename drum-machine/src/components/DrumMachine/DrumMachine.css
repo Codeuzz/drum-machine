@@ -1,0 +1,14 @@
+#drum-machine {
+    width: 700px;
+    background-color: #dcb6ff;
+    border: 5px solid #ffd04b;
+    margin: 150px auto;
+}
+
+h2 { 
+    margin: 0px 5px;
+    text-align: end;
+    font-style: italic;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
