@@ -3,6 +3,7 @@
     background-color: #dcb6ff;
     border: 5px solid #ffd04b;
     margin: 150px auto;
+    border-radius: 10px;
 }
 
 h2 { 
@@ -11,4 +12,8 @@ h2 {
     font-style: italic;
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+body {
+    background-color: #9b25d6;
 }
