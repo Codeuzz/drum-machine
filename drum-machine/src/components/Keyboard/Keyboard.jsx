@@ -1,28 +1,65 @@
 import "./Keyboard.css";
 
-export function Keyboard() {
+import React, { useEffect, useRef } from 'react';
 
-    const playAudio = e => {
-        const joe = document.getElementById('joe')
-        const joeAudio = document.getElementById('joe-audio');
-        joeAudio.currentTime = 0;
-        joeAudio.play();
-    }
+export function Keyboard() {
+    const buttonsRef = useRef([]);
+
+    const audioFiles = [
+        { key: 'A', file: './src/audios/Heater-1.mp3' },
+        { key: 'Z', file: './src/audios/Heater-2.mp3' },
+        { key: 'E', file: './src/audios/Heater-3.mp3' },
+        { key: 'Q', file: './src/audios/Heater-4_1.mp3' },
+        { key: 'S', file: './src/audios/Heater-6.mp3' },
+        { key: 'D', file: './src/audios/Kick_n_Hat.mp3' },
+        { key: 'W', file: './src/audios/RP4_KICK_1.mp3' },
+        { key: 'X', file: './src/audios/Dsc_Oh.mp3' },
+        { key: 'C', file: './src/audios/Cev_H2.mp3' },
+    ];
+
+    const playAudio = (audioId) => {
+        const audioElement = document.getElementById(audioId);
+        if (audioElement) {
+            audioElement.currentTime = 0;
+            audioElement.play();
+        }
+    };
+
+    const handleButtonClick = (e) => {
+        const buttonValue = e.target.value;
+        playAudio(`${buttonValue}-audio`);
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            const button = buttonsRef.current.find(
+                (btn) => btn.value.toLowerCase() === e.key.toLowerCase()
+            );
+            if (button) {
+                playAudio(`${button.value}-audio`);
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
 
     return (
         <div id="keyboard">
-            <button onClick={playAudio} id="joe" className="key" value="A">A
-                <audio id="joe-audio" src=".\src\audios\Heater-1.mp3"></audio>
-            </button>
-            <button className="key" value="Z">Z</button>
-            <button className="key" value="E">E</button>
-            <button className="key" value="Q">Q</button>
-            <button className="key" value="S">S</button>
-            <button className="key" value="D">D</button>
-            <button className="key" value="W">W</button>
-            <button className="key" value="X">X</button>
-            <button className="key" value="C">C</button>
-
+            {audioFiles.map(({ key, file }, index) => (
+                <button
+                    key={key}
+                    onClick={handleButtonClick}
+                    ref={(el) => (buttonsRef.current[index] = el)}
+                    className="key"
+                    value={key}
+                >
+                    {key}
+                    <audio id={`${key}-audio`} src={file}></audio>
+                </button>
+            ))}
         </div>
-    )
+    );
 }
