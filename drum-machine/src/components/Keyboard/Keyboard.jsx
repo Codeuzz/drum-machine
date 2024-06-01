@@ -46,6 +46,7 @@ export function Keyboard({ isBankChecked, power }) {
         document.addEventListener('keydown', handleKeyDown);
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
+
         };
     }, [isBankChecked, power]);
 

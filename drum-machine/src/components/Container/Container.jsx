@@ -5,10 +5,24 @@ import { useState } from "react";
 
 export function Container() {
     const [isBankChecked, setIsBankChecked] = useState(false);
-    const [power, setPower] = useState(false)
+    const [power, setPower] = useState(false);
+    const [bank, setBank] = useState("Heater Kit")
 
     const handleCheckboxChange = (e) => {
         setIsBankChecked(e.target.checked);
+        if(bank === 'Heater Kit') {
+            setBank('Smooth Piano Kit')
+        } else {
+            setBank('Heater Kit')
+        }
+
+        const displayer= document.getElementById('display')
+        displayer.textContent = bank;
+        if(displayer.textContent !== '') {
+        setTimeout(() => {
+            displayer.textContent = '';
+        }, 2000);
+    }
     };
 
     const handlePowerChange = e => {
@@ -18,7 +32,12 @@ export function Container() {
     return (
         <div id="container">
             <Keyboard isBankChecked={isBankChecked} power={power} />
-            <Reglages isBankChecked={isBankChecked} onCheckboxChange={handleCheckboxChange} power={power} handlePowerChange={handlePowerChange} />
+            <Reglages 
+                isBankChecked={isBankChecked} 
+                onCheckboxChange={handleCheckboxChange} 
+                power={power} 
+                handlePowerChange={handlePowerChange}
+            />
         </div>
     )
 }

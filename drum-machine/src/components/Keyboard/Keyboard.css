@@ -19,6 +19,14 @@
 
 }
 
+#keyboard .key:focus {
+    outline: none;
+}
+
+/* #keyboard .key:active {
+    background-color: red;
+} */
+
 
 @media screen and (max-width: 600px) {
     #keyboard {
