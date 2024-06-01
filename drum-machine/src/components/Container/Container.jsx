@@ -5,15 +5,20 @@ import { useState } from "react";
 
 export function Container() {
     const [isBankChecked, setIsBankChecked] = useState(false);
+    const [power, setPower] = useState(false)
 
     const handleCheckboxChange = (e) => {
         setIsBankChecked(e.target.checked);
     };
 
+    const handlePowerChange = e => {
+        setPower(e.target.checked)
+    }
+
     return (
         <div id="container">
-            <Keyboard isBankChecked={isBankChecked}  />
-            <Reglages isBankChecked={isBankChecked} onCheckboxChange={handleCheckboxChange} />
+            <Keyboard isBankChecked={isBankChecked} power={power} />
+            <Reglages isBankChecked={isBankChecked} onCheckboxChange={handleCheckboxChange} power={power} handlePowerChange={handlePowerChange} />
         </div>
     )
 }

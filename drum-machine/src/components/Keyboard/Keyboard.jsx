@@ -2,26 +2,25 @@ import "./Keyboard.css";
 
 import React, { useEffect, useRef } from 'react';
 
-export function Keyboard({ isBankChecked }) {
+export function Keyboard({ isBankChecked, power }) {
     const buttonsRef = useRef([]);
 
     const audioFiles = [
         { key: 'A', file: './src/audios/Heater-1.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3' },
         { key: 'Z', file: './src/audios/Heater-2.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3' },
         { key: 'E', file: './src/audios/Heater-3.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3' },
-        { key: 'Q', file: './src/audios/Heater-4.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3' },
-        { key: 'S', file: './src/audios/Heater-5.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3' },
-        { key: 'D', file: './src/audios/Heater-6.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3' },
-        { key: 'W', file: './src/audios/Heater-7.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3' },
-        { key: 'X', file: './src/audios/Heater-8.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3' },
-        { key: 'C', file: './src/audios/Heater-9.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3' },
+        { key: 'Q', file: './src/audios/Heater-4_1.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3' },
+        { key: 'S', file: './src/audios/Heater-6.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3' },
+        { key: 'D', file: './src/audios/Kick_n_Hat.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3' },
+        { key: 'W', file: './src/audios/RP4_KICK_1.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3' },
+        { key: 'X', file: './src/audios/Dsc_Oh.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3' },
+        { key: 'C', file: './src/audios/Cev_H2.mp3', fileB: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3' },
     ];
 
-   
 
     const playAudio = (audioId) => {
         const audioElement = document.getElementById(audioId);
-        if (audioElement) {
+        if (audioElement && power) {
             audioElement.currentTime = 0;
             audioElement.play();
         }
@@ -39,7 +38,7 @@ export function Keyboard({ isBankChecked }) {
                 (btn) => btn.value.toLowerCase() === e.key.toLowerCase()
             );
             if (button) {
-                const audioId = isBankChecked ? `${button.value}-audioB` : `${button.value}-audio`;
+                const audioId = isBankChecked ? `${button.value}-audioB` : `${button.value}-audio`; 
                 playAudio(audioId);
             }
         };
@@ -48,7 +47,7 @@ export function Keyboard({ isBankChecked }) {
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
-    }, [isBankChecked]);
+    }, [isBankChecked, power]);
 
     return (
         <div id="keyboard">

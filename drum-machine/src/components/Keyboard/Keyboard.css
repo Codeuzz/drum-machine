@@ -18,3 +18,11 @@
     cursor: pointer;
 
 }
+
+
+@media screen and (max-width: 600px) {
+    #keyboard {
+        grid-template-columns: 110px 110px 110px;
+    }
+    
+}

@@ -1,10 +1,10 @@
 import "./Reglages.css";
 
-export function Reglages({isBankChecked, onCheckboxChange}) {
+export function Reglages({isBankChecked, onCheckboxChange, handlePowerChange, power}) {
 
     const displayVol = e => {
      const volumeRange = document.getElementById('range-input').value
-     const displayer= document.getElementById('displayer')
+     const displayer= document.getElementById('display')
      displayer.textContent = `Volume: ${volumeRange}`
      if(displayer.textContent !== '') {
         setTimeout(() => {
@@ -18,11 +18,16 @@ export function Reglages({isBankChecked, onCheckboxChange}) {
             <div className="toggle-switch">
                 <p>Power</p>
                 <label className="switch">
-                    <input className="checkbox" type="checkbox"/>
+                    <input 
+                        className="checkbox" 
+                        type="checkbox"
+                        checked={power}
+                        onChange={handlePowerChange}
+                        />
                     <span className="slider"></span>
                 </label>
             </div>
-            <div id="displayer"></div>
+            <div id="display"></div>
             <input onChange={displayVol} className="range" id="range-input" type="range" min={1} max={100} />
             <div className="toggle-switch">
                 <p>Bank</p>
