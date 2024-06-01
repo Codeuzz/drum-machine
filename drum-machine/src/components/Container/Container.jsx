@@ -8,8 +8,10 @@ export function Container() {
     const [power, setPower] = useState(false);
     const [bank, setBank] = useState("Heater Kit")
 
+
     const handleCheckboxChange = (e) => {
-        setIsBankChecked(e.target.checked);
+        if(power) {
+            setIsBankChecked(e.target.checked);
         if(bank === 'Heater Kit') {
             setBank('Smooth Piano Kit')
         } else {
@@ -23,10 +25,17 @@ export function Container() {
             displayer.textContent = '';
         }, 2000);
     }
+        } 
+        
     };
 
     const handlePowerChange = e => {
-        setPower(e.target.checked)
+        if(power === true) {
+            setPower(e.target.checked)
+            document.getElementById('display').textContent = ''
+        } else {
+            setPower(true)
+        }
     }
 
     return (

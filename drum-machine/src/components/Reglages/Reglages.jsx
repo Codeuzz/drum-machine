@@ -13,8 +13,12 @@ export function Reglages({ isBankChecked, onCheckboxChange, handlePowerChange, p
             volumeRange.disabled = !power;
         }
     }, [power]);
+
+
+
     const displayVol = e => {
         const volumeRange = document.getElementById('range-input')
+        
 
         if(power) {
             const displayer= document.getElementById('display')
