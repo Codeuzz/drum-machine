@@ -1,6 +1,6 @@
 import "./Reglages.css";
 
-export function Reglages() {
+export function Reglages({isBankChecked, onCheckboxChange}) {
 
     const displayVol = e => {
      const volumeRange = document.getElementById('range-input').value
@@ -27,7 +27,13 @@ export function Reglages() {
             <div className="toggle-switch">
                 <p>Bank</p>
                 <label className="switch">
-                    <input className="checkbox" type="checkbox"/>
+                    <input 
+                        id="bank" 
+                        className="checkbox" 
+                        type="checkbox" 
+                        checked={isBankChecked}
+                        onChange={onCheckboxChange}
+                    />
                     <span className="slider"></span>
                 </label>
             </div>
