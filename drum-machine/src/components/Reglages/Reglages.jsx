@@ -3,8 +3,7 @@ import "./Reglages.css";
 import { useEffect } from "react";
 
 
-export function Reglages({ isBankChecked, onCheckboxChange, handlePowerChange, power }) {
-    const [volume, setVolume] = useState(50);
+export function Reglages({ isBankChecked, onCheckboxChange, handlePowerChange, power, volume, setVolume }) {
 
 
     useEffect(() => {

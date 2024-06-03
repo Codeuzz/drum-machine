@@ -6,7 +6,8 @@ import { useState } from "react";
 export function Container() {
     const [isBankChecked, setIsBankChecked] = useState(false);
     const [power, setPower] = useState(false);
-    const [bank, setBank] = useState("Heater Kit")
+    const [bank, setBank] = useState("Heater Kit");
+    const [volume, setVolume] = useState(50);
 
 
     const handleCheckboxChange = (e) => {
@@ -40,12 +41,18 @@ export function Container() {
 
     return (
         <div id="container">
-            <Keyboard isBankChecked={isBankChecked} power={power} />
+            <Keyboard 
+                isBankChecked={isBankChecked} 
+                power={power}
+                volume={volume}
+                />
             <Reglages 
                 isBankChecked={isBankChecked} 
                 onCheckboxChange={handleCheckboxChange} 
                 power={power} 
                 handlePowerChange={handlePowerChange}
+                volume={volume}
+                setVolume={setVolume}
             />
         </div>
     )
